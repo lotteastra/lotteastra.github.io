@@ -7,11 +7,11 @@
     {{ date | date(format=date_format) -}}
 {% endmacro format_date_no_year %}
 
-{% block htmltitle %}
-  {% if section.title %}
-    {{ section.title }}
-  {% endif %}
-{% endblock htmltitle %}
+{% block head_vars %}
+  {{ super()}}
+  {% set title = term.name | capitalize | default(value=title) %}
+  {% set description = "Posts tagged with " ~ '"' ~ term.name ~ '".' %}
+{% endblock head_vars %}
 
 {% block content %}
 <h1 class="archive">

@@ -7,11 +7,11 @@
     {{ date | date(format=date_format) -}}
 {% endmacro format_date_no_year %}
 
-{% block htmltitle %}
-  {% if section.title %}
-    {{ section.title }} |
-  {% endif %}
-{% endblock htmltitle %}
+{% block head_vars %}
+  {{ super()}}
+  {% set title = section.title | default(value=title) %}
+  {% set description = section.description | default(value=description) %}
+{% endblock head_vars %}
 
 {% block content %}
   {% set_global children = [] %}

@@ -1,0 +1,8 @@
+{% extends "parchment/templates/page.html" %}
+{% import "macros.html" as macros %}
+
+{% block head_vars %}
+  {{ super()}}
+  {% set title = page.title | default(value=title) %}
+  {% set description = page.description | default(value=description) %}
+{% endblock head_vars %}

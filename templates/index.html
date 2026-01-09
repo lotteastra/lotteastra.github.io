@@ -1,12 +1,81 @@
-{% extends "parchment/templates/index.html" %}
-{% block head %}
-{{ super() }}
-<meta name="description" content="{% block htmldescription %}{{ config.description }}{% endblock htmldescription %}" />
-<link rel="preload" href="{{get_url(path='/fonts/JunicodeVF-Roman.woff2')}}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{get_url(path='/fonts/JunicodeVF-Italic.woff2')}}" as="font" type="font/woff2" crossorigin>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{get_url(path='/css/custom.css', cachebust=true)}}"
-/>
-{% endblock head %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+      {% block head_vars %}
+        {% set title = config.title %}
+        {% set description = config.description %}
+      {% endblock head_vars %}
+    <title>{{ title }}</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    {% block head %}
+      <meta name="og:title" content="{{ title }}" />
+      <meta name="description" content="{{ description }}" />
+      <link rel="preload" href="{{get_url(path='/fonts/JunicodeVF-Roman.woff2')}}" as="font" type="font/woff2" crossorigin>
+      <link rel="preload" href="{{get_url(path='/fonts/JunicodeVF-Italic.woff2')}}" as="font" type="font/woff2" crossorigin>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        media="all"
+        href="{{ get_url(path='style.css', cachebust=true) }}"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{get_url(path='/css/custom.css', cachebust=true)}}"
+      />
+    {% endblock head %}
+
+    {% block rss %}
+      {% if config.feed_filenames is containing("rss.xml") %}
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml", trailing_slash=false) }}">
+      {% endif %}
+      {% if config.feed_filenames is containing("atom.xml") %}
+        <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
+      {% endif %}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <h1><a href="{{ config.base_url }}">{{ config.title }}</a></h1>
+      <nav>
+        <ul>
+          {% set root = get_section(path="_index.md") %}
+          <li><a href="{{ config.base_url }}">{{ root.title }}</a></li>
+          {% for current in root.subsections %}
+            {% set current = get_section(path=current) %}
+            <li><a href="{{ current.permalink }}">{{ current.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      {% block content %}
+        <article>{{ section.content | safe }}</article>
+      {% endblock content %}
+    </main>
+
+    <footer>
+      {% if config.extra.footer_menu %}
+        {% for block in config.extra.footer_menu %}
+
+            <ul class="links">
+              {% for link in block.links %}
+              <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+              {% endfor %}
+            </ul>
+
+        {% endfor %}
+      {% endif %}
+
+      {% block footer %} {% endblock footer %}
+    </footer>
+
+    {% block body_end %}
+    {% endblock body_end %}
+  </body>
+</html>

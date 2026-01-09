@@ -7,11 +7,11 @@
     {{ date | date(format=date_format) -}}
 {% endmacro format_date_no_year %}
 
-{% block htmltitle %}
-  {% if section.title %}
-    {{ section.title }}
-  {% endif %}
-{% endblock htmltitle %}
+{% block head_vars %}
+  {{ super()}}
+  {% set title = taxonomy.name | capitalize | default(value=title) %}
+  {% set description = "All " ~ taxonomy.name ~ "." %}
+{% endblock head_vars %}
 
 {% block content %}
 <article>
