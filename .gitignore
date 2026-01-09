@@ -1,1 +1,13 @@
 public/
+*.log
+*.tmp
+
+# Obsidian
+.obsidian/
+*.canvas
+*.base
+
+# macOS system files
+.DS_Store
+.vscode/
+thumbs.db

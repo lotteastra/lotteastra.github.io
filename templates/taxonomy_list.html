@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% import "macros.html" as macros %}
+
+{% macro format_date_no_year(date) -%}
+    {% set date_format = "%d %b" -%}
+    {{ date | date(format=date_format) -}}
+{% endmacro format_date_no_year %}
+
+{% block htmltitle %}
+  {% if section.title %}
+    {{ section.title }}
+  {% endif %}
+{% endblock htmltitle %}
+
+{% block content %}
+<article>
+  <h1>{{ taxonomy.name | capitalize }}</h1>
+  <nav>
+    <ul>
+      {% for term in terms %}
+      <li>
+        <a href="{{ term.permalink }}"> {{ term.name | capitalize }}</a> - {{ term.pages | length }} posts
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</article>
+
+{% endblock content %}

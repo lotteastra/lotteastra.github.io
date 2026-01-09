@@ -1,19 +1,12 @@
-{% extends "parchment/templates/index.html" %} {% block head %} {{ super() }}
-<style>
-  :root {
-    --background: white;
-    --background-highlights: white;
-    --primary: #353839;
-    --secondary: #353839;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #353839;
-      --background-highlights: black;
-      --primary: white;
-      --secondary: cyan;
-    }
-  }
-</style>
+{% extends "parchment/templates/index.html" %}
+{% block head %}
+{{ super() }}
+<meta name="description" content="{% block htmldescription %}{{ config.description }}{% endblock htmldescription %}" />
+<link rel="preload" href="{{get_url(path='/fonts/JunicodeVF-Roman.woff2')}}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{get_url(path='/fonts/JunicodeVF-Italic.woff2')}}" as="font" type="font/woff2" crossorigin>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{get_url(path='/css/custom.css', cachebust=true)}}"
+/>
 {% endblock head %}
