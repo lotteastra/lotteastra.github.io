@@ -1,5 +1,5 @@
 ---
-title: New Story
+title: Event Ministry Draft
 date: 2025-02-15
 taxonomies:
   tags:
