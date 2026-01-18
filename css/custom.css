@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "Junicode";
+  font-style: normal;
+  src: url("/fonts/JunicodeVF-Roman.woff2");
+}
+
+@font-face {
+  font-family: "Junicode";
+  font-style: italic;
+  src: url("/fonts/JunicodeVF-Italic.woff2");
+}
+
+:root {
+  --background: white;
+  --background-highlights: white;
+  --primary: #353839;
+  --secondary: #353839;
+}
+
+body {
+  font-family: 'Junicode', 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif;
+  font-display: block;
+}
+
+h2.year {
+  margin-top: 1rex;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #353839;
+    --background-highlights: black;
+    --primary: white;
+    --secondary: cyan;
+    --highlight: #009499;
+  }
+}
