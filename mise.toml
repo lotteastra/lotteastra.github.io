@@ -1,0 +1,6 @@
+[tools]
+zola = "0.22.0"
+
+[tasks]
+build = "zola build"
+serve = "zola serve"
