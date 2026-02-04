@@ -1,6 +1,6 @@
 ---
 title: Tutorial Sheets
-sort_by: Date
+sort_by: date
 ---
 
 Tutorial Sheets for School
