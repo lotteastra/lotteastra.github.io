@@ -26,6 +26,22 @@ h2.year {
   margin-top: 1rex;
 }
 
+article ol li {
+  list-style-type: decimal;
+
+  li {
+    list-style-type: lower-alpha;
+
+    li {
+      list-style-type: hiragana-iroha;
+    }
+
+    li::marker {
+      font-size: 0.8rem;
+    }
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #353839;
