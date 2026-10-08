@@ -1,5 +1,5 @@
 ---
-title: Non-Essential Machinery
+title: Non-Essential Machinery in Contract Law
 taxonomies:
   tags:
     - school
